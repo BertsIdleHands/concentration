@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+
+global.fs = require('fs');
+require('./help.js');
+
+var targets = require('./targets.json');
+var bLine = '###CONCENTRATION###'
+
+//Check for user targets
+try {
+	require(process.env['HOME'] + '/.concentration.json').forEach(function(target){
+		targets.push(target);
+	});
+} catch(err){}
+
+var lines = fs.readFileSync('/etc/hosts', 'utf8').split('\n');
+lines.indexOf(bLine) == -1 ? addBlock() : removeBlock();
+fs.writeFile('/etc/hosts', lines.join('\n'), 'utf8');	
+
+function addBlock() {
+	console.log('Blocking distracting websites.');
+	lines.push(bLine)
+	targets.forEach(function(target){
+		lines.push('::1  ' + target);
+		lines.push('127.0.0.1  ' + target);
+		lines.push('::1  www.' + target);
+		lines.push('127.0.0.1  www.' + target);
+	})
+	lines.push(bLine)
+}
+
+function removeBlock() {
+	console.log('Unblocking distracting websites.');
+	var startPosition = lines.indexOf(bLine);
+	var endPosition = lines.indexOf(bLine, startPosition + 1);
+	lines.splice(startPosition, endPosition - startPosition + 1 );
+}
