@@ -2,11 +2,11 @@
   "name": "concentration",
   "preferGlobal": "true",
   "description": "A simple CLI tool to block social networks and other distracting websites.",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "author": "Bert Vermeire <bert@idlehands.be>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/foreverjs/forever.git"
+    "url": "https://github.com/BertsIdleHands/concentration.git"
   },
   "keywords": [
     "social media",
