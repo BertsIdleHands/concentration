@@ -1,5 +1,5 @@
 if(process.argv.indexOf('--help') > -1 | process.argv.indexOf('-h') > -1) {
-	console.log(fs.readFileSync('README.md', 'utf8'));
+	console.log(fs.readFileSync(__dirname + '/README.md', 'utf8'));
 	process.exit(0);
 }
 

@@ -18,7 +18,7 @@ lines.indexOf(bLine) == -1 ? addBlock() : removeBlock();
 fs.writeFile('/etc/hosts', lines.join('\n'), 'utf8');	
 
 function addBlock() {
-	console.log('Blocking following distracting websites:');
+	console.log('Blocking following domains:');
 	lines.push(bLine)
 	targets.forEach(function(target){
 		console.log(target);
@@ -31,7 +31,7 @@ function addBlock() {
 }
 
 function removeBlock() {
-	console.log('Unblocking distracting websites.');
+	console.log('Unblocking domains...');
 	var startPosition = lines.indexOf(bLine);
 	var endPosition = lines.indexOf(bLine, startPosition + 1);
 	lines.splice(startPosition, endPosition - startPosition + 1 );
